@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 
 const LoginForm = (props) => {
@@ -50,4 +51,11 @@ const LoginForm = (props) => {
   );
 };
 
-export default LoginForm;
+const mapStateToProps = (state) => {
+  return {
+    users: state.users,
+    error: state.error,
+  };
+};
+
+export default connect(mapStateToProps, {})(LoginForm);

@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 
 const initialSignUp = {
   name: '',
   username: '',
-  password: ''
-}
+  password: '',
+};
 
 const SignUpForm = (props) => {
   const [signUp, setSignUp] = useState(initialSignUp);
@@ -22,9 +23,9 @@ const SignUpForm = (props) => {
     e.preventDefault();
     axiosWithAuth()
       .post('register')
-      .then(res => {
-        console.log(res)
-        setSignUp(initialSignUp)
+      .then((res) => {
+        console.log(res);
+        setSignUp(initialSignUp);
       })
       .catch((err) => console.log(`Sign Up error: ${err}`));
   };
@@ -52,4 +53,11 @@ const SignUpForm = (props) => {
   );
 };
 
-export default SignUpForm;
+const mapStateToProps = (state) => {
+  return {
+    users: state.users,
+    error: state.error,
+  };
+};
+
+export default connect(mapStateToProps, {})(SignUpForm);
