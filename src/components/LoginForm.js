@@ -18,13 +18,13 @@ const LoginForm = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axiosWithAuth()
-      .post()
-      .then(res => {
-        console.log(res)
-        localStorage.setItem('token', res.data.payload)
-        props.history.push('')
+      .post('login', login)
+      .then((res) => {
+        console.log(res);
+        localStorage.setItem('token', res.data.payload);
+        props.history.push('');
       })
-      .catch((err) => console.log(`Login error: ${err.response}`));
+      .catch((err) => console.log(`Login error: ${err}`));
   };
 
   return (

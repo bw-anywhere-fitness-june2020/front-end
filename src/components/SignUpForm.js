@@ -21,24 +21,17 @@ const SignUpForm = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axiosWithAuth()
-      .post()
+      .post('register')
       .then(res => {
         console.log(res)
         setSignUp(initialSignUp)
       })
-      .catch((err) => console.log(`Sign Up error: ${err.response}`));
+      .catch((err) => console.log(`Sign Up error: ${err}`));
   };
 
   return (
     <>
       <form onSubmit={handleSubmit}>
-        <input
-          type='text'
-          name='name'
-          placeholder='name'
-          value={props.name}
-          onChange={handleChange}
-        />
         <input
           type='text'
           name='username'
@@ -47,7 +40,7 @@ const SignUpForm = (props) => {
           onChange={handleChange}
         />
         <input
-          type='text'
+          type='password'
           name='password'
           placeholder='password'
           value={props.password}
