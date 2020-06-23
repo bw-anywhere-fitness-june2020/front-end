@@ -9,12 +9,12 @@ import Header from './components/Header';
 
 import './App.css';
 
-const App = () => {
+const App = (props) => {
   return (
     <Router>
       <div className='App'>
         <Header />
-        <h1>Welcome to AnywhereFitness</h1>
+        <h1>{`AnywhereFitness`}</h1>
         <Route exact path='/' component={LoginForm} />
         <Route exact path='/signup' component={SignUpForm} />
         <PrivateRoute exact path='/clients' component={ClientForm} />
