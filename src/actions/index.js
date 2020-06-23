@@ -1,4 +1,4 @@
-import axios from 'axios';
+import {axiosWithAuth} from '../utils/axiosWithAuth'
 
 export const FETCH_START = 'FETCH_START';
 export const FETCH_SUCCESS = 'FETCH_SUCCESS';
@@ -7,7 +7,7 @@ export const FETCH_FAILURE = 'FETCH_FAILURE';
 export const fetchUser = () => (dispatch) => {
   dispatch({ type: FETCH_START });
 
-  axios
+  axiosWithAuth()
     .get()
     .then((res) => {
       console.log(res.data);
@@ -25,8 +25,8 @@ export const POST_FAILURE = 'POST_FAILURE';
 export const postUser = (user) => (dispatch) => {
   dispatch({ type: POST_START });
 
-  axios
-    .post('', user)
+  axiosWithAuth()
+    .post('auth/register', user)
     .then((res) => {
       console.log(res.data);
       dispatch({ type: POST_SUCCESS, payload: res.data });

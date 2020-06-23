@@ -23,7 +23,7 @@ const LoginForm = (props) => {
       .then((res) => {
         console.log(res);
         localStorage.setItem('token', res.data.token);
-        props.history.push('');
+        props.history.push('/clients');
       })
       .catch((err) => console.log(`Login error: ${err}`));
   };

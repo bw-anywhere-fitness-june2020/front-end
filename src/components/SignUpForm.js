@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
+// import {postUser} from '../actions'
 
 const initialSignUp = {
   username: '',
