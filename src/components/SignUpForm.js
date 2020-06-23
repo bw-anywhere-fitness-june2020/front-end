@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 
 const initialSignUp = {
-  name: '',
   username: '',
   password: '',
+  // instructor: false
 };
 
 const SignUpForm = (props) => {
@@ -21,6 +21,7 @@ const SignUpForm = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(signUp)
     axiosWithAuth()
       .post('auth/register', signUp)
       .then((res) => {
@@ -47,6 +48,12 @@ const SignUpForm = (props) => {
           value={props.password}
           onChange={handleChange}
         />
+        {/* <label>instructor</label>
+        <input
+          type='checkbox'
+          name='instructor'
+          value={props.instructor}
+        /> */}
         <button>Sign Up</button>
       </form>
     </>
