@@ -22,7 +22,7 @@ const SignUpForm = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axiosWithAuth()
-      .post('register')
+      .post('auth/register', signUp)
       .then((res) => {
         console.log(res);
         setSignUp(initialSignUp);
