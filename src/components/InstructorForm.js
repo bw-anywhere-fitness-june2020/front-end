@@ -10,7 +10,7 @@ const initialWorkout = {
   location: '',
 };
 
-const ClientForm = (props) => {
+const InstructorForm = (props) => {
   const [workout, setWorkout] = useState(initialWorkout);
 
   const inputChange = (e) => {
@@ -29,7 +29,7 @@ const ClientForm = (props) => {
         console.log(res);
       })
       .catch((err) =>
-        console.log(`Client form error: ${err.response}`),
+        console.log(`Instructor form error: ${err.response}`),
       );
   }, []);
 
@@ -58,7 +58,7 @@ const ClientForm = (props) => {
             value={props.type}
             onChange={inputChange}
           >
-            <option value=''>Select class type</option>
+            <option>Select class type</option>
             <option value='stretching'>stretching</option>
             <option value='martial arts'>martial arts</option>
             <option value='strength'>strength</option>
@@ -72,7 +72,7 @@ const ClientForm = (props) => {
             value={props.start_time}
             onChange={inputChange}
           >
-            <option value=''>Select a time</option>
+            <option>Select a time</option>
             <option value='9:00am'>9:00am</option>
             <option value='1:00pm'>1:00pm</option>
             <option value='2:00pm'>2:00pm</option>
@@ -86,7 +86,7 @@ const ClientForm = (props) => {
             value={props.duration}
             onChange={inputChange}
           >
-            <option value=''>Select a duration</option>
+            <option>Select a duration</option>
             <option value='30 minutes'>30 minutes</option>
             <option value='1 hour'>1 hour</option>
             <option value='2 hours'>2 hours</option>
@@ -99,7 +99,7 @@ const ClientForm = (props) => {
             value={props.intensity_level}
             onChange={inputChange}
           >
-            <option value=''>Select intensity level</option>
+            <option>Select intensity level</option>
             <option value='easy'>easy</option>
             <option value='medium'>medium</option>
             <option value='difficult'>difficult</option>
@@ -112,16 +112,16 @@ const ClientForm = (props) => {
             value={props.location}
             onChange={inputChange}
           >
-            <option value=''>Select location</option>
+            <option>Select location</option>
             <option value='mall'>mall</option>
             <option value='dojo'>dojo</option>
             <option value='outdoors'>outdoors</option>
           </select>
         </label>
-        <button className='btn'>Submit</button>
+        <button>Submit</button>
       </form>
     </div>
   );
 };
 
-export default ClientForm;
+export default InstructorForm;

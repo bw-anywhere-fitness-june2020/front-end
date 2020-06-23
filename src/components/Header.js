@@ -3,11 +3,12 @@ import { NavLink } from 'react-router-dom'
 
 const Header = () => {
   return (
-    <div>
-      <NavLink to='/'>Login</NavLink>
-      <NavLink to='/signup'>Sign Up</NavLink>
-      <NavLink to='/clients'>Clients</NavLink>
-    </div>
+    <nav>
+      <NavLink to='/' className='nav-links'>Login</NavLink>
+      <NavLink to='/signup' className='nav-links'>Sign Up</NavLink>
+      <NavLink to='/clients' className='nav-links'>Clients</NavLink>
+      <NavLink to='/' onClick={() => localStorage.removeItem('token')} className='nav-links'>Logout</NavLink>
+    </nav>
   )
 }
 
