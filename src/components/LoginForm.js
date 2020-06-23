@@ -22,7 +22,7 @@ const LoginForm = (props) => {
       .post('auth/login', login)
       .then((res) => {
         console.log(res);
-        localStorage.setItem('token', res.data.payload);
+        localStorage.setItem('token', res.data.token);
         props.history.push('');
       })
       .catch((err) => console.log(`Login error: ${err}`));
