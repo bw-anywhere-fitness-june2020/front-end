@@ -222,7 +222,7 @@ footer {
 
 nav {
   width: 80%;
-  border-top: 1px solid rgb(155, 155, 155);
+  border-bottom: 1px solid rgb(155, 155, 155);
   display: flex;
   flex-direction: row;
   margin: 0 auto;
@@ -232,7 +232,7 @@ nav {
 .nav-links {
   width: 100%;
   justify-content: space-around;
-  margin-top: 5%;
+  margin: 2%;
   font-size: 1.2rem;
 }
 
@@ -317,4 +317,9 @@ label {
   flex-direction: column;
   justify-content: space-evenly;
   text-align: center;
+  font-weight: 800;
+}
+
+.instructor input{
+  width: 62.5%;
 }

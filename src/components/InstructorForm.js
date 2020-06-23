@@ -7,7 +7,8 @@ const initialWorkout = {
   start_time: '',
   duration: '',
   intensity_level: '',
-  location: '',
+  class_location: '',
+  max_class_size: ''
 };
 
 const InstructorForm = (props) => {
@@ -24,73 +25,58 @@ const InstructorForm = (props) => {
 
   useEffect(() => {
     axiosWithAuth()
-      .get('/class')
+      .post('/class', workout)
       .then((res) => {
         console.log(res);
+        setWorkout(workout)
       })
       .catch((err) =>
-        console.log(`Instructor form error: ${err.response}`),
+        console.log(`Instructor form error: ${err}`),
       );
-  }, []);
+  }, [workout]);
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form className= 'instructor' onSubmit={handleSubmit}>
         <label>
           Class Name
-          <select
+          <input
+            type='text'
             name='classname'
             value={props.classname}
+            placeholder='Enter a class name'
             onChange={inputChange}
-          >
-            <option value=''> Select a class</option>
-            <option value='Yoga'>Yoga</option>
-            <option value='Pilates'>Pilates</option>
-            <option value='Karate'>Karate</option>
-            <option value='Weightlifting'>Weightlifting</option>
-            <option value='Running'>Running</option>
-          </select>
+          />
         </label>
         <label>
           Class Type
-          <select
+          <input
+            type='text'
             name='type'
             value={props.type}
+            placeholder='Enter a class type'
             onChange={inputChange}
-          >
-            <option>Select class type</option>
-            <option value='stretching'>stretching</option>
-            <option value='martial arts'>martial arts</option>
-            <option value='strength'>strength</option>
-            <option value='cardio'>cardio</option>
-          </select>
+          />
         </label>
         <label>
           Start Time
-          <select
+          <input
+            type='text'
             name='start_time'
             value={props.start_time}
+            placeholder='Enter a start time'
             onChange={inputChange}
-          >
-            <option>Select a time</option>
-            <option value='9:00am'>9:00am</option>
-            <option value='1:00pm'>1:00pm</option>
-            <option value='2:00pm'>2:00pm</option>
-            <option value='5:00pm'>5:00pm</option>
-          </select>
+          />
         </label>
         <label>
           Duration
-          <select
+          <input
+            type='text'
             name='duration'
             value={props.duration}
+            placeholder='Enter a duration (ex: 30 minutes)'
             onChange={inputChange}
-          >
-            <option>Select a duration</option>
-            <option value='30 minutes'>30 minutes</option>
-            <option value='1 hour'>1 hour</option>
-            <option value='2 hours'>2 hours</option>
-          </select>
+          />
         </label>
         <label>
           Intensity Level
@@ -107,18 +93,25 @@ const InstructorForm = (props) => {
         </label>
         <label>
           Location
-          <select
-            name='location'
-            value={props.location}
+          <input
+            type='text'
+            name='class_location'
+            value={props.class_location}
+            placeholder='Enter a location'
             onChange={inputChange}
-          >
-            <option>Select location</option>
-            <option value='mall'>mall</option>
-            <option value='dojo'>dojo</option>
-            <option value='outdoors'>outdoors</option>
-          </select>
+          />
         </label>
-        <button>Submit</button>
+        <label>
+          Class Size
+          <input
+            type='number'
+            name='max_class_size'
+            value={props.max_class_size}
+            placeholder='Enter a maximum class size'
+            onChange={inputChange}
+          />
+        </label>
+        <button className='btn'>Submit</button>
       </form>
     </div>
   );

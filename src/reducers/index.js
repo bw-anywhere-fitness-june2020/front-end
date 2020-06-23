@@ -8,7 +8,7 @@ import {
 } from '../actions';
 
 const initialState = {
-  users: [],
+  users: [{username: '', password:''}],
   isFetching: false,
   error: '',
 };

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
+import { connect } from 'react-redux';
 
 const initialWorkout = {
   classname: '',
@@ -7,7 +8,7 @@ const initialWorkout = {
   start_time: '',
   duration: '',
   intensity_level: '',
-  location: '',
+  class_location: '',
 };
 
 const ClientForm = (props) => {
@@ -28,13 +29,16 @@ const ClientForm = (props) => {
       .then((res) => {
         console.log(res);
       })
-      .catch((err) =>
-        console.log(`Client form error: ${err.response}`),
-      );
+      .catch((err) => console.log(`Client form error: ${err}`));
   }, []);
 
   return (
     <div>
+      <h1>
+        {props.users.map((user) => {
+          return user.username;
+        })}
+      </h1>
       <form onSubmit={handleSubmit}>
         <label>
           Class Name
@@ -109,7 +113,7 @@ const ClientForm = (props) => {
           Location
           <select
             name='location'
-            value={props.location}
+            value={props.class_location}
             onChange={inputChange}
           >
             <option value=''>Select location</option>
@@ -124,4 +128,12 @@ const ClientForm = (props) => {
   );
 };
 
-export default ClientForm;
+const mapStateToProps = (state) => {
+  console.log(state);
+  return {
+    users: state.users,
+    error: state.error,
+  };
+};
+
+export default connect(mapStateToProps, {})(ClientForm);
