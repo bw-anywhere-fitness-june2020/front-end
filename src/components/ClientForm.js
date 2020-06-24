@@ -48,7 +48,6 @@ const ClientForm = (props) => {
 
   return (
     <div>
-      <h1>{`${props}`}</h1>
       <form onSubmit={handleSubmit}>
         <label>
           Class Name
