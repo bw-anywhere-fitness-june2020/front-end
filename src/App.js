@@ -6,6 +6,7 @@ import LoginForm from './components/LoginForm';
 import SignUpForm from './components/SignUpForm';
 import ClientForm from './components/ClientForm';
 import InstructorForm from './components/InstructorForm';
+import Classes from "./components/Classes";
 
 import Header from './components/Header';
 
@@ -29,6 +30,7 @@ const App = (props) => {
         <Route exact path='/' component={LoginForm} />
         <Route exact path='/signup' component={SignUpForm} />
         <PrivateRoute exact path='/clients' component={ClientForm} />
+        <PrivateRoute exact path='/classes' component={Classes} />
         <PrivateRoute exact path='/instructors' component={InstructorForm}/>
       </div>
     </Router>
