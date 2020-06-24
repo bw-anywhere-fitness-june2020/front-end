@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { postUser } from '../actions';
+import { postUser } from '../actions/index';
 
 const initialSignUp = {
   username: '',

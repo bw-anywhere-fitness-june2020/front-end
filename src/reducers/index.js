@@ -5,7 +5,7 @@ import {
   POST_START,
   POST_SUCCESS,
   POST_FAILURE,
-} from '../actions';
+} from '../actions/index';
 
 const initialState = {
   // users: [],
@@ -67,6 +67,7 @@ const reducer = (state = initialState, action) => {
         // isFetching: false,
         // error: action.payload
       }
+  
     default:
       return state;
   }

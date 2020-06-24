@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 import {connect} from 'react-redux'
+import {useHistory} from 'react-router-dom'
 
 const initialWorkout = {
   classname: '',
@@ -10,10 +11,13 @@ const initialWorkout = {
   intensity_level: '',
   class_location: '',
   max_class_size: '',
+  current_number_of_registered_attendees: '',
 };
 
 const InstructorForm = (props) => {
   const [workout, setWorkout] = useState(initialWorkout);
+
+  const {push} = useHistory()
 
   // const [classToEdit, setClassToEdit] = useState(initialWorkout)
 
@@ -35,6 +39,7 @@ const InstructorForm = (props) => {
         setWorkout(workout);
       })
       .catch((err) => console.log(`Instructor form error: ${err}`));
+      push('/classes')
   };
 
   // const deleteClass = (e) => {
