@@ -32,6 +32,7 @@ const ClientForm = (props) => {
       .then((res) => {
         console.log(res);
         setWorkout(res.data.classes);
+        initialWorkout.classname='Pilates' ? initialWorkout.type : null
       })
       .catch((err) => console.log(`Client form error: ${err}`));
   };

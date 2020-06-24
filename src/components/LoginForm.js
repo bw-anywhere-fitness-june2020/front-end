@@ -23,7 +23,7 @@ const LoginForm = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     props.fetchUser(login);
-    push('/clients');
+    push('/classes');
   };
 
   return (
