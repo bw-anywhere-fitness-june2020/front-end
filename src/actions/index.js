@@ -1,4 +1,4 @@
-import {axiosWithAuth} from '../utils/axiosWithAuth'
+import { axiosWithAuth } from '../utils/axiosWithAuth';
 
 export const FETCH_START = 'FETCH_START';
 export const FETCH_SUCCESS = 'FETCH_SUCCESS';
@@ -28,8 +28,8 @@ export const postUser = (user) => (dispatch) => {
   axiosWithAuth()
     .post('auth/register', user)
     .then((res) => {
-      console.log(res.data);
-      dispatch({ type: POST_SUCCESS, payload: res.data });
+      console.log(res.data.created_user);
+      dispatch({ type: POST_SUCCESS, payload: res.data.created_user });
     })
     .catch((err) =>
       dispatch({ type: POST_FAILURE, payload: err.response }),
