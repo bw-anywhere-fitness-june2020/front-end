@@ -4,14 +4,18 @@ export const FETCH_START = 'FETCH_START';
 export const FETCH_SUCCESS = 'FETCH_SUCCESS';
 export const FETCH_FAILURE = 'FETCH_FAILURE';
 
-export const fetchUser = () => (dispatch) => {
+export const fetchUser = (user) => (dispatch) => {
   dispatch({ type: FETCH_START });
 
   axiosWithAuth()
-    .get()
+    .post('auth/login', user)
     .then((res) => {
       console.log(res.data);
-      dispatch({ type: FETCH_SUCCESS, payload: res.data });
+      dispatch({
+        type: FETCH_SUCCESS,
+        payload: res.data.created_user,
+      });
+      localStorage.setItem('token', res.data.token);
     })
     .catch((err) =>
       dispatch({ type: FETCH_FAILURE, payload: err.response }),
@@ -28,10 +32,27 @@ export const postUser = (user) => (dispatch) => {
   axiosWithAuth()
     .post('auth/register', user)
     .then((res) => {
-      console.log(res.data.created_user);
-      dispatch({ type: POST_SUCCESS, payload: res.data.created_user });
+      console.log(res.data);
+      dispatch({
+        type: POST_SUCCESS,
+        payload: res.data.created_user,
+      });
     })
     .catch((err) =>
       dispatch({ type: POST_FAILURE, payload: err.response }),
     );
 };
+
+// export const CHECK_BOX = 'CHECK_BOX'
+
+// export const checkBox = () => dispatch => {
+//   dispatch ({type: CHECK_BOX})
+
+//   const checkboxChange = (e) => {
+//     setSignUp({
+//       ...signUp,
+//       userpermisions: 23412,
+//     });
+//   };
+
+// }

@@ -19,14 +19,16 @@ const LoginForm = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axiosWithAuth()
-      .post('auth/login', login)
-      .then((res) => {
-        console.log(res);
-        localStorage.setItem('token', res.data.token);
-        props.history.push('/clients');
-      })
-      .catch((err) => console.log(`Login error: ${err}`));
+    // axiosWithAuth()
+    //   .post('auth/login', login)
+    //   .then((res) => {
+    //     console.log(res);
+    //     localStorage.setItem('token', res.data.token);
+    //     props.history.push('/clients');
+    //   })
+    //   .catch((err) => console.log(`Login error: ${err}`));
+    props.fetchUser(login)
+    props.history.push('/clients');
   };
 
   return (
@@ -53,7 +55,7 @@ const LoginForm = (props) => {
 };
 
 const mapStateToProps = (state) => {
-  console.log(state)
+  console.log(state);
   return {
     users: state.users,
     error: state.error,
