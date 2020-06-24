@@ -7,6 +7,7 @@ const LoginForm = (props) => {
   const [login, setLogin] = useState({
     username: '',
     password: '',
+    userpermisions: null,
   });
 
   const { push } = useHistory();
@@ -42,6 +43,7 @@ const LoginForm = (props) => {
           value={props.password}
           onChange={handleChange}
         />
+        
         <button className='btn'>Login</button>
       </form>
     </>

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
+import {connect} from 'react-redux'
 
 const initialWorkout = {
   classname: '',
@@ -75,7 +76,7 @@ const InstructorForm = (props) => {
             type='text'
             name='start_time'
             value={props.start_time}
-            placeholder='Enter a start time'
+            placeholder='Enter a start time (ex: 9:00am)'
             onChange={inputChange}
           />
         </label>
@@ -128,4 +129,11 @@ const InstructorForm = (props) => {
   );
 };
 
-export default InstructorForm;
+const mapStateToProps = state => {
+  return {
+    users: state.users,
+    error: state.error
+  }
+}
+
+export default connect(mapStateToProps, {})(InstructorForm);
