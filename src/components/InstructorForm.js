@@ -23,7 +23,8 @@ const InstructorForm = (props) => {
     setWorkout({ ...workout, [e.target.name]: e.target.value });
   };
 
-  useEffect(() => {
+  const addClass = e => {
+    e.preventDefault()
     axiosWithAuth()
       .post('/class', workout)
       .then((res) => {
@@ -33,11 +34,13 @@ const InstructorForm = (props) => {
       .catch((err) =>
         console.log(`Instructor form error: ${err}`),
       );
-  }, [workout]);
+  }
+
+
 
   return (
     <div>
-      <form className= 'instructor' onSubmit={handleSubmit}>
+      <form className= 'instructor' onSubmit={addClass}>
         <label>
           Class Name
           <input

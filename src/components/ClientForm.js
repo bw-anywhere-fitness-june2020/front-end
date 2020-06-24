@@ -9,6 +9,7 @@ const initialWorkout = {
   duration: '',
   intensity_level: '',
   class_location: '',
+  current_number_of_registered_attendees: 0,
 };
 
 const ClientForm = (props) => {
@@ -20,25 +21,34 @@ const ClientForm = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setWorkout({ ...workout, [e.target.name]: e.target.value });
-  };
-
-  useEffect(() => {
+    console.log(workout);
+    // setWorkout({ ...workout, [e.target.name]: e.target.value });
+    setWorkout({
+      current_number_of_registered_attendees:
+        initialWorkout.current_number_of_registered_attendees + 1,
+    });
     axiosWithAuth()
       .get('/class')
       .then((res) => {
         console.log(res);
+        setWorkout(res.data.classes);
       })
       .catch((err) => console.log(`Client form error: ${err}`));
-  }, []);
+  };
+
+  // useEffect(() => {
+  //   axiosWithAuth()
+  //     .get('/class')
+  //     .then((res) => {
+  //       console.log(res)
+  //       setWorkout(res.data.classes);
+  //     })
+  //     .catch((err) => console.log(`Client form error: ${err}`));
+  // }, []);
 
   return (
     <div>
-      <h1>
-        {props.users.map((user) => {
-          return user.username;
-        })}
-      </h1>
+      <h1>{`${props}`}</h1>
       <form onSubmit={handleSubmit}>
         <label>
           Class Name
