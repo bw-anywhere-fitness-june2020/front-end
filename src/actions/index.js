@@ -11,11 +11,12 @@ export const fetchUser = (user) => (dispatch) => {
     .post('auth/login', user)
     .then((res) => {
       console.log(res.data);
+      localStorage.setItem('token', res.data.token);
+      console.log(localStorage);
       dispatch({
         type: FETCH_SUCCESS,
         payload: res.data.created_user,
       });
-      localStorage.setItem('token', res.data.token);
     })
     .catch((err) =>
       dispatch({ type: FETCH_FAILURE, payload: err.response }),

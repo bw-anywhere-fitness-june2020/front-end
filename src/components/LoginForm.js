@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { axiosWithAuth } from '../utils/axiosWithAuth';
+import { useHistory } from 'react-router-dom';
+import { fetchUser } from '../actions';
 
 const LoginForm = (props) => {
-  // console.log(props.users[0].username)
   const [login, setLogin] = useState({
     username: '',
     password: '',
   });
+
+  const { push } = useHistory();
 
   const handleChange = (e) => {
     e.preventDefault();
@@ -19,16 +21,8 @@ const LoginForm = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // axiosWithAuth()
-    //   .post('auth/login', login)
-    //   .then((res) => {
-    //     console.log(res);
-    //     localStorage.setItem('token', res.data.token);
-    //     props.history.push('/clients');
-    //   })
-    //   .catch((err) => console.log(`Login error: ${err}`));
-    props.fetchUser(login)
-    props.history.push('/clients');
+    props.fetchUser(login);
+    push('/clients');
   };
 
   return (
@@ -62,4 +56,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, {})(LoginForm);
+export default connect(mapStateToProps, { fetchUser })(LoginForm);
