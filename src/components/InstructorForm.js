@@ -15,7 +15,7 @@ const initialWorkout = {
 const InstructorForm = (props) => {
   const [workout, setWorkout] = useState(initialWorkout);
 
-  const [classToEdit, setClassToEdit] = useState(initialWorkout)
+  // const [classToEdit, setClassToEdit] = useState(initialWorkout)
 
   const inputChange = (e) => {
     setWorkout({ ...workout, [e.target.name]: e.target.value });
@@ -37,15 +37,15 @@ const InstructorForm = (props) => {
       .catch((err) => console.log(`Instructor form error: ${err}`));
   };
 
-  const deleteClass = (e) => {
-    e.preventDefault();
-    axiosWithAuth()
-      .delete(`class/${classToEdit.id}`, classToEdit)
-      .then(res => {
-        console.log(res)
-      })
-      .catch((err) => console.log(`Instructor delete error: ${err}`));
-  };
+  // const deleteClass = (e) => {
+  //   e.preventDefault();
+  //   axiosWithAuth()
+  //     .delete(`class/${classToEdit.id}`, classToEdit)
+  //     .then(res => {
+  //       console.log(res)
+  //     })
+  //     .catch((err) => console.log(`Instructor delete error: ${err}`));
+  // };
 
   return (
     <div>
