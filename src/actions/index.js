@@ -10,12 +10,12 @@ export const fetchUser = (user) => (dispatch) => {
   axiosWithAuth()
     .post('auth/login', user)
     .then((res) => {
-      console.log(res.data);
+      console.log('LOGIN ACTION RESPONSE', res);
       localStorage.setItem('token', res.data.token);
       console.log(localStorage);
       dispatch({
         type: FETCH_SUCCESS,
-        payload: res.data.created_user,
+        payload: res.data,
       });
     })
     .catch((err) =>
