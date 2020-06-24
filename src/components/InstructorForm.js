@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React, { useState } from 'react';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 
 const initialWorkout = {
@@ -8,11 +8,13 @@ const initialWorkout = {
   duration: '',
   intensity_level: '',
   class_location: '',
-  max_class_size: ''
+  max_class_size: '',
 };
 
 const InstructorForm = (props) => {
   const [workout, setWorkout] = useState(initialWorkout);
+
+  const [classToEdit, setClassToEdit] = useState(initialWorkout)
 
   const inputChange = (e) => {
     setWorkout({ ...workout, [e.target.name]: e.target.value });
@@ -23,24 +25,30 @@ const InstructorForm = (props) => {
   //   setWorkout({ ...workout, [e.target.name]: e.target.value });
   // };
 
-  const addClass = e => {
-    e.preventDefault()
+  const addClass = (e) => {
+    e.preventDefault();
     axiosWithAuth()
       .post('/class', workout)
       .then((res) => {
         console.log(res);
-        setWorkout(workout)
+        setWorkout(workout);
       })
-      .catch((err) =>
-        console.log(`Instructor form error: ${err}`),
-      );
-  }
+      .catch((err) => console.log(`Instructor form error: ${err}`));
+  };
 
-
+  const deleteClass = (e) => {
+    e.preventDefault();
+    axiosWithAuth()
+      .delete(`class/${classToEdit.id}`, classToEdit)
+      .then(res => {
+        console.log(res)
+      })
+      .catch((err) => console.log(`Instructor delete error: ${err}`));
+  };
 
   return (
     <div>
-      <form className= 'instructor' onSubmit={addClass}>
+      <form className='instructor' onSubmit={addClass}>
         <label>
           Class Name
           <input

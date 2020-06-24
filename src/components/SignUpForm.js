@@ -12,7 +12,7 @@ const initialSignUp = {
 const SignUpForm = (props) => {
   const [signUp, setSignUp] = useState(initialSignUp);
 
-  const {push} = useHistory();
+  const { push } = useHistory();
 
   const handleChange = (e) => {
     e.preventDefault();
@@ -60,7 +60,7 @@ const SignUpForm = (props) => {
             name='userpermisions'
             value={props.userpermisions}
             onChange={checkboxChange}
-            className = 'checkbox'
+            className='checkbox'
           />
         </label>
 
