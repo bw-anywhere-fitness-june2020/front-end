@@ -11,7 +11,8 @@ const initialSignUp = {
 
 const SignUpForm = (props) => {
   const [signUp, setSignUp] = useState(initialSignUp);
-  const history = useHistory();
+
+  const {push} = useHistory();
 
   const handleChange = (e) => {
     e.preventDefault();
@@ -25,7 +26,7 @@ const SignUpForm = (props) => {
     e.preventDefault();
     console.log(signUp);
     props.postUser(signUp);
-    props.history.push('/');
+    push('/');
   };
 
   const checkboxChange = (e) => {

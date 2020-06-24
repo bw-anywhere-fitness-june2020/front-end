@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState} from 'react';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 
 const initialWorkout = {
@@ -18,10 +18,10 @@ const InstructorForm = (props) => {
     setWorkout({ ...workout, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setWorkout({ ...workout, [e.target.name]: e.target.value });
-  };
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   setWorkout({ ...workout, [e.target.name]: e.target.value });
+  // };
 
   const addClass = e => {
     e.preventDefault()
