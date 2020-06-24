@@ -348,3 +348,9 @@ label {
 .instructor input {
   width: 62.5%;
 }
+
+[type='checkbox'] {
+  width: 25px;
+  height: 25px;
+}
+

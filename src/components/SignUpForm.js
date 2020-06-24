@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {useHistory} from 'react-router-dom'
+import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { postUser } from '../actions';
 
@@ -25,15 +25,15 @@ const SignUpForm = (props) => {
     e.preventDefault();
     console.log(signUp);
     props.postUser(signUp);
-    props.history.push('/')
+    props.history.push('/');
   };
 
-  const checkboxChange = e => {
+  const checkboxChange = (e) => {
     setSignUp({
       ...signUp,
       userpermisions: 23412,
-    })
-  }
+    });
+  };
 
   return (
     <>
@@ -53,11 +53,13 @@ const SignUpForm = (props) => {
           onChange={handleChange}
         />
         <label>
-          Instructor
-          <input type='checkbox'
-          name='userpermisions'
-          value={props.userpermisions}
-          onChange={checkboxChange}
+          Check box if you are an instructor
+          <input
+            type='checkbox'
+            name='userpermisions'
+            value={props.userpermisions}
+            onChange={checkboxChange}
+            className = 'checkbox'
           />
         </label>
 

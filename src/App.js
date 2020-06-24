@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import PrivateRoute from './utils/PrivateRoute';
 
-import LoginForm from './components/ClientLoginForm';
+import LoginForm from './components/LoginForm';
 import SignUpForm from './components/SignUpForm';
 import ClientForm from './components/ClientForm';
 import InstructorForm from './components/InstructorForm';

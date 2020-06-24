@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 
-const ClientLoginForm = (props) => {
+const LoginForm = (props) => {
   // console.log(props.users[0].username)
   const [login, setLogin] = useState({
     username: '',
@@ -60,4 +60,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, {})(ClientLoginForm);
+export default connect(mapStateToProps, {})(LoginForm);
