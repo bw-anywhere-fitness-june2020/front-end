@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { fetchUser } from '../actions';
+import { fetchUser } from '../actions/index';
 
 const LoginForm = (props) => {
   const [login, setLogin] = useState({

@@ -44,16 +44,4 @@ export const postUser = (user) => (dispatch) => {
     );
 };
 
-// export const CHECK_BOX = 'CHECK_BOX'
 
-// export const checkBox = () => dispatch => {
-//   dispatch ({type: CHECK_BOX})
-
-//   const checkboxChange = (e) => {
-//     setSignUp({
-//       ...signUp,
-//       userpermisions: 23412,
-//     });
-//   };
-
-// }
