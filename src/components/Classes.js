@@ -2,45 +2,31 @@ import React, { useEffect, useState } from 'react';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 import { connect } from 'react-redux';
 
-import {
-  Card,
-  //   CardImg,
-  //   CardText,
-  //   CardBody,
-  //   CardTitle,
-  //   CardSubtitle,
-  //   Button,
-} from 'reactstrap';
+import { Card } from 'reactstrap';
 
 import './classes.css';
 
-// const initialWorkout = {
-//   classname: '',
-//   type: '',
-//   start_time: '',
-//   duration: '',
-//   intensity_level: '',
-//   class_location: '',
-//   max_class_size: '',
-//   current_number_of_registered_attendees: '',
-// };
-
-const Classes = (props) => {
+const Classes = () => {
   const [classes, setClasses] = useState([]);
   const [update, setUpdate] = useState(false);
   const [editing, setEditing] = useState(false);
-    const [workout, setWorkout] = useState({
-      classname: '',
-      type: '',
-      start_time: '',
-      duration: '',
-      intensity_level: '',
-      class_location: '',
-      max_class_size: 20,
-      current_number_of_registered_attendees: 1,
-    });
+  const [workout, setWorkout] = useState({
+    classname: '',
+    type: '',
+    start_time: '',
+    duration: '',
+    intensity_level: '',
+    class_location: '',
+    max_class_size: '',
+    current_number_of_registered_attendees: '',
+  });
 
-    const [currentClassID, setCurrentClassID] = useState()
+  const editWorkout = (workoutClass) => {
+    setEditing(true);
+    setWorkout(workoutClass);
+  };
+
+  const [currentClassID, setCurrentClassID] = useState();
 
   const inputChange = (e) => {
     setWorkout({ ...workout, [e.target.name]: e.target.value });
@@ -62,31 +48,25 @@ const Classes = (props) => {
         console.log(err);
       });
   }, [update]);
-  // eslint-disable-next-line
-  //   const [join, setJoin] = useState({
-  //     current_number_of_registered_attendees: 1,
-  //   });
-
-  //   console.log(join.current_number_of_registered_attendees);
 
   const joinClass = (id) => {
     console.log(classes[id]);
-      classes.map((item, index) => {
-        if (item.id === id) {
-          axiosWithAuth()
-            .put(`class/${item.id}`, {
-              current_number_of_registered_attendees: (classes[
-                index
-              ].current_number_of_registered_attendees += 1),
-            })
-            .then((res) => {
-              console.log(res);
-              setUpdate(true);
-            })
-            .catch((err) => console.log(`Join error: ${err}`));
-        }
-        return null
-      });
+    classes.map((item, index) => {
+      if (item.id === id) {
+        axiosWithAuth()
+          .put(`class/${item.id}`, {
+            current_number_of_registered_attendees: (classes[
+              index
+            ].current_number_of_registered_attendees += 1),
+          })
+          .then((res) => {
+            console.log(res);
+            setUpdate(true);
+          })
+          .catch((err) => console.log(`Join error: ${err}`));
+      }
+      return null;
+    });
   };
 
   const deleteClass = () => {
@@ -104,7 +84,8 @@ const Classes = (props) => {
     classes.map((item, index) => {
       console.log(index, item);
       if (item.id === currentClassID) {
-          console.log(workout)
+        console.log(workout);
+        console.log(classes[currentClassID]);
         axiosWithAuth()
           .put(`class/${currentClassID}`, workout)
           .then((res) => {
@@ -113,7 +94,7 @@ const Classes = (props) => {
           })
           .catch((err) => console.log(`Join error: ${err}`));
       }
-      return null
+      return null;
     });
   };
 
@@ -205,16 +186,20 @@ const Classes = (props) => {
                 onChange={inputChange}
               />
             </label>
-            <button
-              onClick={(e) => {
-                e.preventDefault();
-                editClass();
-                setEditing(false);
-              }}
-              className='btn'
-            >
-              Submit
-            </button>
+            <div className='button-row'>
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  editClass();
+                  setEditing(false);
+                }}
+              >
+                Submit
+              </button>
+              <button onClick={() => setEditing(false)}>
+                Cancel
+              </button>
+            </div>
           </form>
         </div>
       ) : (
@@ -272,7 +257,8 @@ const Classes = (props) => {
                   onClick={(e) => {
                     e.preventDefault();
                     setEditing(true);
-                    setCurrentClassID(item.id)
+                    setCurrentClassID(item.id);
+                    editWorkout(item);
                   }}
                 >
                   {' '}
