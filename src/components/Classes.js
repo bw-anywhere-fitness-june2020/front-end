@@ -2,8 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 import { connect } from 'react-redux';
 
-// import {deleteClass} from '../actions/instructorActions'
-
 import {
   Card,
   //   CardImg,
@@ -16,24 +14,23 @@ import {
 
 import './classes.css';
 
-const initialClass = {
-  id: '',
-  classname: '',
-  type: '',
-  start_time: '',
-  duration: '',
-  intensity_level: '',
-  class_location: '',
-  current_number_of_registered_attendees: 0,
-};
+// const initialWorkout = {
+//   classname: '',
+//   type: '',
+//   start_time: '',
+//   duration: '',
+//   intensity_level: '',
+//   class_location: '',
+//   max_class_size: '',
+//   current_number_of_registered_attendees: '',
+// };
 
-const Classes = ({ workoutClasses, updateClasses}) => {
+const Classes = () => {
   const [classes, setClasses] = useState([]);
-  const [update, setUpdate] = useState(false)
+  const [update, setUpdate] = useState(false);
+  const [editing, setEditing] = useState(false);
 
-  const [classToEdit, setClassToEdit] = useState(initialClass);
   console.log(classes);
-  console.log(classToEdit);
 
   const [indexID, setIndexID] = useState();
 
@@ -43,26 +40,61 @@ const Classes = ({ workoutClasses, updateClasses}) => {
       .then((res) => {
         console.log(res);
         setClasses(res.data.classes);
-        setUpdate(false)
+        setUpdate(false);
       })
       .catch((err) => {
         console.log(err);
       });
   }, [update]);
 
-    console.log('test', typeof(indexID));
+  const [join, setJoin] = useState({
+    current_number_of_registered_attendees: 1,
+  });
+
+  console.log(join.current_number_of_registered_attendees);
+
+  const joinClass = () => {
+    // let add = join.current_number_of_registered_attendees + 1;
+    axiosWithAuth()
+      .put(`class/${indexID}`, {
+        classname: 'swimming',
+        type: 'cardio',
+        start_time: '9:00am',
+        duration: '1 hour',
+        intensity_level: 'easy',
+        class_location: 'pool',
+        max_class_size: 10,
+        current_number_of_registered_attendees: join.current_number_of_registered_attendees+ 1,
+      })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => console.log(`Join error: ${err}`));
+  };
+
   const deleteClass = () => {
-    console.log('test1', indexID);
+    console.log(indexID);
     axiosWithAuth()
       .delete(`class/${indexID}`)
       .then((res) => {
         console.log(res);
-        setUpdate(true)
-        // updateClasses(
-        //   classes.filter((item) => item.id !== workout.id),
-        // );
+        setUpdate(true);
       })
       .catch((err) => console.log(`Instructor delete error: ${err}`));
+  };
+
+  const editClass = () => {
+    console.log(indexID);
+    axiosWithAuth()
+      .put(`class/${indexID}`, indexID)
+      .then((res) => {
+        console.log(res);
+        setEditing(true);
+        setClasses({
+          ...classes,
+        });
+      })
+      .catch((err) => console.log(`Edit error: ${err}`));
   };
 
   return (
@@ -95,19 +127,40 @@ const Classes = ({ workoutClasses, updateClasses}) => {
             <p className='card-content'>
               {item.current_number_of_registered_attendees}
             </p>
-            <button className='button'>Sign up</button>
-            <button
-              className='button'
-              onClick={(e) => {
-                e.preventDefault();
-                console.log('onclick', item.id);
-                setIndexID(item.id);
-                deleteClass();
-              }}
-            >
-              {' '}
-              Delete
-            </button>
+            <div className='button-row'>
+              <button
+                className='button'
+                onClick={(e) => {
+                  e.preventDefault();
+                  setIndexID(item.id);
+                  joinClass();
+                }}
+              >
+                Join
+              </button>
+              <button
+                className='button'
+                onClick={(e) => {
+                  e.preventDefault();
+                  setIndexID(item.id);
+                  deleteClass();
+                }}
+              >
+                {' '}
+                Delete
+              </button>
+              <button
+                className='button'
+                onClick={(e) => {
+                  e.preventDefault();
+                  setIndexID(item.id);
+                  editClass();
+                }}
+              >
+                {' '}
+                Edit
+              </button>
+            </div>
           </Card>
         );
       })}

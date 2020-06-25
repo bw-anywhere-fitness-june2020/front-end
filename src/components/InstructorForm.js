@@ -11,7 +11,7 @@ const initialWorkout = {
   intensity_level: '',
   class_location: '',
   max_class_size: '',
-  current_number_of_registered_attendees: '',
+  current_number_of_registered_attendees: 1,
 };
 
 const InstructorForm = (props) => {
@@ -41,16 +41,6 @@ const InstructorForm = (props) => {
       .catch((err) => console.log(`Instructor form error: ${err}`));
       push('/classes')
   };
-
-  // const deleteClass = (e) => {
-  //   e.preventDefault();
-  //   axiosWithAuth()
-  //     .delete(`class/${classToEdit.id}`, classToEdit)
-  //     .then(res => {
-  //       console.log(res)
-  //     })
-  //     .catch((err) => console.log(`Instructor delete error: ${err}`));
-  // };
 
   return (
     <div>
@@ -115,6 +105,16 @@ const InstructorForm = (props) => {
             name='class_location'
             value={props.class_location}
             placeholder='Enter a location'
+            onChange={inputChange}
+          />
+        </label>
+        <label>
+          Registered Attendees
+          <input
+            type='number'
+            name='current_number_of_registered_attendees'
+            value={props.current_number_of_registered_attendees}
+            placeholder='Enter number of registered attendees'
             onChange={inputChange}
           />
         </label>
