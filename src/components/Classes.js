@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 import { connect } from 'react-redux';
-import InstructorForm from '../components/InstructorForm';
 
 import {
   Card,
@@ -72,9 +71,7 @@ const Classes = (props) => {
 
   const joinClass = (id) => {
     console.log(classes[id]);
-    {
       classes.map((item, index) => {
-        console.log(index, item);
         if (item.id === id) {
           axiosWithAuth()
             .put(`class/${item.id}`, {
@@ -85,12 +82,11 @@ const Classes = (props) => {
             .then((res) => {
               console.log(res);
               setUpdate(true);
-              // setJoin(classes.indexID.current_number_of_registered_attendees)
             })
             .catch((err) => console.log(`Join error: ${err}`));
         }
+        return null
       });
-    }
   };
 
   const deleteClass = () => {
@@ -117,6 +113,7 @@ const Classes = (props) => {
           })
           .catch((err) => console.log(`Join error: ${err}`));
       }
+      return null
     });
   };
 
