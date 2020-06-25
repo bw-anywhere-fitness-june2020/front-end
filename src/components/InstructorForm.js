@@ -121,7 +121,7 @@ const InstructorForm = (props) => {
             onChange={inputChange}
           />
         </label>
-        <button className='btn'>Add Class</button>
+        <button>Add Class</button>
       </form>
     </div>
   );

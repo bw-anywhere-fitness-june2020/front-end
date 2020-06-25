@@ -82,7 +82,6 @@ const Classes = () => {
 
   const editClass = () => {
     classes.map((item, index) => {
-      console.log(index, item);
       if (item.id === currentClassID) {
         console.log(workout);
         console.log(classes[currentClassID]);
@@ -216,6 +215,7 @@ const Classes = () => {
               }}
             >
               <h2 className='card-header'>{item.classname}</h2>
+              <p className='card-label'>Workout type</p>
               <p className='card-content'>{item.type}</p>
               <p className='card-label'>Difficulty</p>
               <p className='card-content'>{item.intensity_level}</p>
