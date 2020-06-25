@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
-import {connect} from 'react-redux'
-import {useHistory} from 'react-router-dom'
+import { connect } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 const initialWorkout = {
   classname: '',
@@ -11,24 +11,17 @@ const initialWorkout = {
   intensity_level: '',
   class_location: '',
   max_class_size: '',
-  current_number_of_registered_attendees: 1,
+  current_number_of_registered_attendees: '',
 };
 
 const InstructorForm = (props) => {
   const [workout, setWorkout] = useState(initialWorkout);
 
-  const {push} = useHistory()
-
-  // const [classToEdit, setClassToEdit] = useState(initialWorkout)
+  const { push } = useHistory();
 
   const inputChange = (e) => {
     setWorkout({ ...workout, [e.target.name]: e.target.value });
   };
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   setWorkout({ ...workout, [e.target.name]: e.target.value });
-  // };
 
   const addClass = (e) => {
     e.preventDefault();
@@ -39,7 +32,7 @@ const InstructorForm = (props) => {
         setWorkout(workout);
       })
       .catch((err) => console.log(`Instructor form error: ${err}`));
-      push('/classes')
+    push('/classes');
   };
 
   return (
@@ -128,17 +121,17 @@ const InstructorForm = (props) => {
             onChange={inputChange}
           />
         </label>
-        <button className='btn'>Submit</button>
+        <button className='btn'>Add Class</button>
       </form>
     </div>
   );
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     users: state.users,
-    error: state.error
-  }
-}
+    error: state.error,
+  };
+};
 
 export default connect(mapStateToProps, {})(InstructorForm);
