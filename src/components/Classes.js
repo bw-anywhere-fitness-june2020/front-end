@@ -82,7 +82,6 @@ const Classes = () => {
 
   const editClass = () => {
     classes.map((item, index) => {
-      console.log(index, item);
       if (item.id === currentClassID) {
         console.log(workout);
         console.log(classes[currentClassID]);
