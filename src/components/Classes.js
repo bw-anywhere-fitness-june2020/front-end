@@ -28,7 +28,7 @@ import './classes.css';
 const Classes = () => {
   const [classes, setClasses] = useState([]);
   const [update, setUpdate] = useState(false);
-  const [editing, setEditing] = useState(false);
+//   const [editing, setEditing] = useState(false);
 
   console.log(classes);
 
@@ -54,20 +54,13 @@ const Classes = () => {
   console.log(join.current_number_of_registered_attendees);
 
   const joinClass = () => {
-    // let add = join.current_number_of_registered_attendees + 1;
     axiosWithAuth()
       .put(`class/${indexID}`, {
-        classname: 'swimming',
-        type: 'cardio',
-        start_time: '9:00am',
-        duration: '1 hour',
-        intensity_level: 'easy',
-        class_location: 'pool',
-        max_class_size: 10,
-        current_number_of_registered_attendees: join.current_number_of_registered_attendees+ 1,
+        current_number_of_registered_attendees: join.current_number_of_registered_attendees+= 1,
       })
       .then((res) => {
         console.log(res);
+        setUpdate(true)
       })
       .catch((err) => console.log(`Join error: ${err}`));
   };
@@ -83,19 +76,19 @@ const Classes = () => {
       .catch((err) => console.log(`Instructor delete error: ${err}`));
   };
 
-  const editClass = () => {
-    console.log(indexID);
-    axiosWithAuth()
-      .put(`class/${indexID}`, indexID)
-      .then((res) => {
-        console.log(res);
-        setEditing(true);
-        setClasses({
-          ...classes,
-        });
-      })
-      .catch((err) => console.log(`Edit error: ${err}`));
-  };
+//   const editClass = () => {
+//     console.log(indexID);
+//     axiosWithAuth()
+//       .put(`class/${indexID}`, indexID)
+//       .then((res) => {
+//         console.log(res);
+//         setEditing(true);
+//         setClasses({
+//           ...classes,
+//         });
+//       })
+//       .catch((err) => console.log(`Edit error: ${err}`));
+//   };
 
   return (
     <div className='classes'>
@@ -154,7 +147,7 @@ const Classes = () => {
                 onClick={(e) => {
                   e.preventDefault();
                   setIndexID(item.id);
-                  editClass();
+                //   editClass();
                 }}
               >
                 {' '}
