@@ -16,6 +16,7 @@
 .card-header {
   font-size: 1.8rem;
   margin: 2%;
+  text-transform: capitalize;
 }
 
 .card-content {

@@ -12,7 +12,6 @@ export const fetchUser = (user) => (dispatch) => {
     .then((res) => {
       console.log('LOGIN ACTION RESPONSE', res);
       localStorage.setItem('token', res.data.token);
-      console.log(localStorage);
       dispatch({
         type: FETCH_SUCCESS,
         payload: res.data,

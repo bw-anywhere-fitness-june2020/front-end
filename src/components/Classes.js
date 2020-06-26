@@ -32,8 +32,6 @@ const Classes = () => {
     setWorkout({ ...workout, [e.target.name]: e.target.value });
   };
 
-  console.log(classes);
-
   const [indexID, setIndexID] = useState();
 
   useEffect(() => {
@@ -50,7 +48,6 @@ const Classes = () => {
   }, [update]);
 
   const joinClass = (id) => {
-    console.log(classes[id]);
     classes.map((item, index) => {
       if (item.id === id) {
         axiosWithAuth()
